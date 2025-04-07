@@ -6,14 +6,29 @@ const Pokemon = () => {
 
     const API = 'https://pokeapi.co/api/v2/pokemon/squirtle';
 
-    const fetchPokemon = () => {
-        fetch(API)
-            .then((res) => res.json())
-            .then((data) => {
-                setPokemon(data);
-            })
-            .catch((error) => console.log(error));
+    // ! By using .thenand .catch, we can handle the promise returned by fetch
+
+    // const fetchPokemon = () => {
+    //     fetch(API)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setPokemon(data);
+    //         })
+    //         .catch((error) => console.log(error));
+    // }
+
+    // ! Using async/await makes the code cleaner and easier to read
+    
+    const fetchPokemon=async ()=>{
+        try{
+            const res=await fetch(API);
+            const data=await res.json();
+            setPokemon(data);
+        }catch(error){
+            console.log(error);
+        }
     }
+
 
     useEffect(() => {
         fetchPokemon();
@@ -52,3 +67,6 @@ const Pokemon = () => {
 }
 
 export default Pokemon;
+
+
+

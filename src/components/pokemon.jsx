@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../Styles/poke.css';
 
 const Pokemon = () => {
     const [pokemon, setPokemon] = useState(null);
@@ -18,7 +17,7 @@ const Pokemon = () => {
     // }
 
     // ! Using async/await makes the code cleaner and easier to read
-    
+
     const fetchPokemon=async ()=>{
         try{
             const res=await fetch(API);

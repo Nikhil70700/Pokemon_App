@@ -6,23 +6,20 @@ const LoadingAndErrorState = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-
-
-    const API = 'https://pokeapi.co/api/v2/pokemon/squirtle';
-
+    const API = 'https://pokeapi.co/api/v2/pokemon/pikachu';
     const fetchPokemon = async () => {
         try {
             const res = await fetch(API);
             const data = await res.json();
             setPokemon(data);
             setLoading(false);
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error);
             setError(error);
             setLoading(false)
         }
-    }
-
+    };
 
     useEffect(() => {
         fetchPokemon();
@@ -39,7 +36,7 @@ const LoadingAndErrorState = () => {
     if (error) {
         return (
             <div>
-                <h1>Error:{error.message}</h1>
+                <h1>Warning!:{error.message}</h1>
             </div>
         )
     }
@@ -60,10 +57,22 @@ const LoadingAndErrorState = () => {
 
                     </figure>
                     <h1>{pokemon.name}</h1>
+                    <div className='grid-three-cols'>
+                        <p className='pokemon-info'>
+                            Weight: <span>{pokemon.weight}</span>
+                        </p>
+                        <p className='pokemon-info'>
+                            Speed: {pokemon.stats[5].base_stat}
+                        </p>
+
+                        <p className="pokemon-info">
+                            Height: {pokemon.height}
+                        </p>
+                    </div>
                 </li>
             </ul>
         </section>
     )
 }
 
-export default LoadingAndErrorState
+export default LoadingAndErrorState;
